@@ -1,0 +1,26 @@
+.CardsProjets {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, auto));
+    max-width: 1200px;
+    margin: 4rem auto;
+
+    grid-gap: 20px;
+
+    @media (max-width: 768px) {
+        flex-wrap: wrap;
+        grid-template-columns: repeat(auto-fill, minmax(320px, auto));
+    }
+
+
+
+    a {
+        text-decoration: none;
+        ;
+    }
+}
+
+@for $i from 0 through 2 {
+    .CardsProjets div:nth-child(#{$i}n) {
+        animation-delay: #{$i * 0.5}s;
+    }
+}

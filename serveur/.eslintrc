@@ -1,0 +1,51 @@
+{
+  "parser": "babel-eslint",
+
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "extends": ["airbnb-standard"],
+
+  "globals": {
+    "__DEV__": true,
+    "__PROD__": true,
+    "__DEBUG__": true,
+    "__COVERAGE__": true,
+    "__BASENAME__": true
+  },
+
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      },
+      "webpack": {
+        "config": "webpack.config.js"
+      }
+    }
+  },
+
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "semi": ["error", "never"],
+    "comma-dangle": [2, "always-multiline"],
+    "max-len": 0,
+    "no-shadow": 0,
+    "arrow-body-style": 0,
+    "global-require": 0,
+    "no-unused-expressions": 0,
+    "no-confusing-arrow": 0,
+
+    "import/no-dynamic-require": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/prefer-default-export": 0,
+    "react/require-default-props": 0,
+    "react/forbid-prop-types": 0,
+    "react/default-props-match-prop-types": 0,
+
+
+    "react/jsx-props-no-spreading": 0
+  }
+}

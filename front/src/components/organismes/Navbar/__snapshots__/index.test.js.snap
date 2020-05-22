@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Failed proptypes renders correctly 1`] = `ShallowWrapper {}`;
+
+exports[`Galerie Component renders correctly 1`] = `ShallowWrapper {}`;
+
+exports[`Galerie Component renders properly 1`] = `ShallowWrapper {}`;
+
+exports[`Should render. 1`] = `ReactWrapper {}`;

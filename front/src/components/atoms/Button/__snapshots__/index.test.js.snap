@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Galerie Component with onClick() props Should render. 1`] = `ReactWrapper {}`;
+
+exports[`Should render. 1`] = `ReactWrapper {}`;
+
+exports[`renders correctly 1`] = `[Function]`;
