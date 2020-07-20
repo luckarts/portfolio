@@ -17,7 +17,7 @@
     "eslint-config-airbnb-standard": "^3.0.1",
     "html-react-parser": "^0.9.1",
     "lib-react-component": "^1.0.0",
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "lucky-react-component": "^1.1.2",
     "lucky-react-components": "^1.0.1",
     "material-components-web": "^4.0.0",
