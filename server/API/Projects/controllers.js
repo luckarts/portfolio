@@ -8,24 +8,19 @@ import {
 } from '../../Services/Project/project_Db';
 
 export async function getAllProjects(req, res) {
-  const projects = await get_AllProjects();
-  if (projects) {
-    return res.status(200).json({ projects });
-  } else return null;
+	const projects = await get_AllProjects();
+	if (projects) {
+		return res.status(200).json({ projects });
+	} else return null;
 }
 export async function getProjectsByTag(req, res) {
-  const tag = req.params.tag;
-  const projects = await get_ProjectsByTag(tag);
-  if (projects) {
-    return res.status(200).json({ projects });
-  } else return null;
+	const tag = req.params.tag;
+	const projects = await get_ProjectsByTag(tag);
+	if (projects) {
+		return res.status(200).json({ projects });
+	} else return null;
 }
-export async function getTechnos(req, res) {
-  const technos = await get_AllTechnos();
-  if (technos) {
-    return res.status(200).json({ technos });
-  } else return null;
-}
+
 export async function getProjectByName(req, res) {
   const name = req.params.ProjectName;
   const projects = await get_ProjectByname(name);

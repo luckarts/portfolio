@@ -3,7 +3,7 @@ import {Op} from 'sequelize';
 
 export async function get_AllProjects() {
 	const projects = db.Project.findAll({
-		order: [['position', 'ASC']],
+		order: [['id', 'DESC']],
 	});
 	if (projects) {
 		return projects;
@@ -23,7 +23,9 @@ export async function get_AllTechnos() {
 
 export async function get_ProjectsByTag(tag) {
 	const projects = db.Project.findAll({
+		order: [['id', 'DESC']],
 		where: {
+
 				[Op.or]: [
 				  {
 					techno: {
@@ -39,7 +41,6 @@ export async function get_ProjectsByTag(tag) {
 	}
 	return null;
 }
-
 export async function get_ProjectByname(name) {
 	const projects = db.Project.findOne({
 		where: { title: name },
@@ -74,7 +75,7 @@ export async function updatProject(arg) {
 			title: arg.title,
 			description: arg.description,
 			techno: arg.techno,
-			position: arg.position,
+
 		},
 		{ returning: true, where: { id: arg.id } }
 	);
