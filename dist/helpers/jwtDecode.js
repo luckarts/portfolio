@@ -14,6 +14,8 @@ var _dotenv = _interopRequireDefault(require("dotenv"));
 _dotenv.default.config();
 
 function jwtDecode(req, res, next) {
+  console.log(req.headers, 'headers');
+
   if (req.headers && req.headers.authorization) {
     var token = req.headers.authorization.split(' ')[1];
 

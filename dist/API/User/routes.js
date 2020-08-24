@@ -13,6 +13,8 @@ var _asyncHandler = require("../../helpers/asyncHandler");
 
 var _signup = require("./auth_controller/signup");
 
+var _path = _interopRequireDefault(require("path"));
+
 var _update = require("./auth_controller/update");
 
 var _passport = _interopRequireDefault(require("passport"));
@@ -25,8 +27,24 @@ var _upload = require("../../helpers/multer/upload");
 
 var _jwtDecode = require("../../helpers/jwtDecode");
 
+var _multer = _interopRequireDefault(require("multer"));
+
 var router = _express.default.Router();
 
+console.log(_path.default.join("".concat(process.cwd(), "/public")));
+
+var storage = _multer.default.diskStorage({
+  destination: function destination(req, file, next) {
+    next(null, _path.default.join("".concat(process.cwd(), "/public/upload")));
+  },
+  filename: function filename(req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+var upload = (0, _multer.default)({
+  storage: storage
+}).single('cv');
 router.post('/signup', (0, _asyncHandler.asyncHandler)(_signup.signup));
 router.post('/signin', _passport.default.authenticate('local', {
   failWithError: true,
@@ -50,8 +68,7 @@ router.post('/signin', _passport.default.authenticate('local', {
   });
 });
 router.get('/user', (0, _asyncHandler.asyncHandler)(_update.getUser));
-router.use(_jwtDecode.jwtDecode);
-router.put('/update', _upload.uploadPDF, (0, _asyncHandler.asyncHandler)(_update.update));
+router.put('/update', upload, (0, _asyncHandler.asyncHandler)(_update.update));
 router.get('/me', _authenticate.default, function (req, res) {
   try {
     res.json(req.user);

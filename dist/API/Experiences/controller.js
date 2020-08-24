@@ -148,29 +148,30 @@ function _create_List_Experiences() {
         switch (_context4.prev = _context4.next) {
           case 0:
             _req$body2 = req.body, newListExp = _req$body2.newListExp, id = _req$body2.id;
+            console.log(newListExp);
             i = 0;
 
-          case 2:
+          case 3:
             if (!(i < newListExp.length)) {
-              _context4.next = 9;
+              _context4.next = 10;
               break;
             }
 
             description = newListExp[i].description;
-            _context4.next = 6;
+            _context4.next = 7;
             return (0, _experiences_Db.createListExperiences)(description, id);
 
-          case 6:
+          case 7:
             i++;
-            _context4.next = 2;
+            _context4.next = 3;
             break;
 
-          case 9:
+          case 10:
             return _context4.abrupt("return", res.status(200).json({
               message: 'you are post in db Experience'
             }));
 
-          case 10:
+          case 11:
           case "end":
             return _context4.stop();
         }
@@ -254,57 +255,58 @@ function _createAll_Experiences() {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
+            console.log(req.body);
             _req$body3 = req.body, date = _req$body3.date, fonction = _req$body3.fonction, company = _req$body3.company, link = _req$body3.link, list_experience = _req$body3.list_experience, year = _req$body3.year;
 
             if (!(date || fonction || company || link)) {
-              _context6.next = 4;
+              _context6.next = 5;
               break;
             }
 
-            _context6.next = 4;
+            _context6.next = 5;
             return (0, _experiences_Db.createExperiencesDetails)(date, fonction, company, link);
 
-          case 4:
+          case 5:
             if (!list_experience) {
-              _context6.next = 14;
+              _context6.next = 15;
               break;
             }
 
             i = 0;
 
-          case 6:
+          case 7:
             if (!(i < list_experience.length)) {
-              _context6.next = 14;
+              _context6.next = 15;
               break;
             }
 
             description = list_experience[i].description;
             id = list_experience[i].id;
-            _context6.next = 11;
+            _context6.next = 12;
             return (0, _experiences_Db.createListExperiences)(description, id);
 
-          case 11:
+          case 12:
             i++;
-            _context6.next = 6;
+            _context6.next = 7;
             break;
 
-          case 14:
+          case 15:
             if (!year) {
-              _context6.next = 17;
+              _context6.next = 18;
               break;
             }
 
-            _context6.next = 17;
+            _context6.next = 18;
             return (0, _experiences_Db.createExperiences)({
               year: year
             });
 
-          case 17:
+          case 18:
             return _context6.abrupt("return", res.status(200).json({
               message: 'Experience has been created !'
             }));
 
-          case 18:
+          case 19:
           case "end":
             return _context6.stop();
         }
@@ -326,56 +328,57 @@ function _update_Experience() {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
+            console.log(req.body);
             id = req.params.id;
             _req$body4 = req.body, date = _req$body4.date, fonction = _req$body4.fonction, company = _req$body4.company, link = _req$body4.link, year = _req$body4.year, list_experience = _req$body4.list_experience;
 
             if (!year) {
-              _context7.next = 5;
+              _context7.next = 6;
               break;
             }
 
-            _context7.next = 5;
+            _context7.next = 6;
             return (0, _experiences_Db.updateExperiences)(year, id);
 
-          case 5:
+          case 6:
             if (!(date || fonction || company || link)) {
-              _context7.next = 8;
+              _context7.next = 9;
               break;
             }
 
-            _context7.next = 8;
+            _context7.next = 9;
             return (0, _experiences_Db.updateExperiencesDetails)(date, fonction, company, link, id);
 
-          case 8:
+          case 9:
             if (!list_experience) {
-              _context7.next = 18;
+              _context7.next = 19;
               break;
             }
 
             i = 0;
 
-          case 10:
+          case 11:
             if (!(i < list_experience.length)) {
-              _context7.next = 18;
+              _context7.next = 19;
               break;
             }
 
             description = list_experience[i].description;
             _id = list_experience[i].id;
-            _context7.next = 15;
+            _context7.next = 16;
             return (0, _experiences_Db.updateListExperiences)(description, _id);
 
-          case 15:
+          case 16:
             i++;
-            _context7.next = 10;
+            _context7.next = 11;
             break;
 
-          case 18:
+          case 19:
             return _context7.abrupt("return", res.status(200).json({
               message: 'you are update in db Experience'
             }));
 
-          case 19:
+          case 20:
           case "end":
             return _context7.stop();
         }

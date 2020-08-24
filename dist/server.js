@@ -25,7 +25,9 @@ var _routes2 = _interopRequireDefault(require("./API/Gallery/routes"));
 
 var _routes3 = _interopRequireDefault(require("./API/Experiences/routes"));
 
-var _routes4 = _interopRequireDefault(require("./API/Projects/routes"));
+var _routes4 = _interopRequireDefault(require("./API/Routes/routes"));
+
+var _routes5 = _interopRequireDefault(require("./API/Projects/routes"));
 
 var _path = _interopRequireDefault(require("path"));
 
@@ -35,16 +37,12 @@ require("./API/User/passport");
 
 _dotenv.default.config();
 
-var app = (0, _express.default)();
+var app = (0, _express.default)(); // Log all requests to file, but errors to console
 
-if (process.env.NODE_ENV === 'development') {
-  // Log all requests to file, but errors to console
-  app.use((0, _morgan.default)('dev'));
-}
-
+app.use((0, _morgan.default)('dev'));
 app.use(_bodyParser.default.json());
 app.use(_bodyParser.default.urlencoded({
-  limit: '5mb',
+  limit: '50mb',
   extended: false,
   parameterLimit: 1000000
 }));
@@ -68,7 +66,8 @@ app.use(_express.default.static(_path.default.join(__dirname + '/../public'))); 
 app.use('/api/users', _routes.default);
 app.use('/api/gallery', _routes2.default);
 app.use('/api/experiences', _routes3.default);
-app.use('/api/projects', _routes4.default);
+app.use('/api/projects', _routes5.default);
+app.use('/routes', _routes4.default);
 app.use('/thumb/img/:img', _resize.default);
 app.get('/*/*', function (req, res) {
   res.redirect('/notFound');

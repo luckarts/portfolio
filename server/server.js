@@ -7,7 +7,7 @@ import getResize from './helpers/resize';
 import user_routes from './API/User/routes';
 import gall_routes from './API/Gallery/routes';
 import exp_Routes from './API/Experiences/routes';
-
+import Routes from './API/Routes/routes';
 import projects_Routes from './API/Projects/routes';
 import path from 'path';
 import passport from 'passport';
@@ -15,13 +15,11 @@ import passport from 'passport';
 dotenv.config();
 const app = express();
 
-if (process.env.NODE_ENV === 'development') {
-	// Log all requests to file, but errors to console
-	app.use(morgan('dev'));
-}
+// Log all requests to file, but errors to console
+app.use(morgan('dev'));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ limit: '5mb', extended: false, parameterLimit: 1000000 }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: false, parameterLimit: 1000000 }));
 app.use(passport.initialize());
 import './API/User/passport';
 // Définition des CORS
@@ -44,6 +42,7 @@ app.use('/api/users', user_routes);
 app.use('/api/gallery', gall_routes);
 app.use('/api/experiences', exp_Routes);
 app.use('/api/projects', projects_Routes);
+app.use('/routes', Routes);
 app.use('/thumb/img/:img', getResize);
 app.get('/*/*', function(req, res) {
 	res.redirect('/notFound');
@@ -55,6 +54,7 @@ app.use('*', (req, res) => {
 // error handler
 app.use((req, res, next) => {
 	let err = new Error('Not Found');
+
 	err.status = 404;
 	next(err);
 });

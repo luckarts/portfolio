@@ -1,8 +1,5 @@
 import multer from 'multer';
-import path from 'path';
-
-//upload images
-const storage = multer.diskStorage({
+export const storage = multer.diskStorage({
 	destination: function(req, file, next) {
 		next(null, path.join(`${process.cwd()}/public/img`));
 	},
@@ -25,18 +22,7 @@ export const upload = multer({
 	fileFilter: fileImgFilter,
 }).single('img');
 
-//upload files
-
-const storagePdf = multer.diskStorage({
-	destination: function(req, file, next) {
-		next(null, path.join(`${process.cwd()}/public/upload`));
-	},
-	filename: function(req, file, cb) {
-		cb(null, file.originalname);
-	},
-});
-
-const fileFilter = (req, file, cb) => {
+export const fileFilter = (req, file, cb) => {
 	if (file.mimetype == 'application/pdf') {
 		cb(null, true);
 	} else {
@@ -44,8 +30,3 @@ const fileFilter = (req, file, cb) => {
 		return cb(new Error('Only .pdf format allowed!'));
 	}
 };
-
-export const uploadPDF = multer({
-	storage: storagePdf,
-	fileFilter: fileFilter,
-}).single('cv');

@@ -2,6 +2,7 @@ import resize from './thumbnails';
 
 export default async (req, res) => {
 	// Extract the query-parameter
+
 	const widthString = 1;
 	const heightString = 1;
 	const format = req.query.format;

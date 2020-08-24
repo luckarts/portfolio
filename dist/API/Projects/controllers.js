@@ -7,6 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getAllProjects = getAllProjects;
 exports.getProjectsByTag = getProjectsByTag;
+exports.getTechnos = getTechnos;
 exports.getProjectByName = getProjectByName;
 exports.create_Project = create_Project;
 exports.update_Project = update_Project;
@@ -96,62 +97,101 @@ function _getProjectsByTag() {
   return _getProjectsByTag.apply(this, arguments);
 }
 
-function getProjectByName(_x5, _x6) {
-  return _getProjectByName.apply(this, arguments);
+function getTechnos(_x5, _x6) {
+  return _getTechnos.apply(this, arguments);
 }
 
-function _getProjectByName() {
-  _getProjectByName = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(req, res) {
-    var name, projects;
+function _getTechnos() {
+  _getTechnos = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(req, res) {
+    var technos;
     return _regenerator.default.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            name = req.params.ProjectName;
-            _context3.next = 3;
-            return (0, _project_Db.get_ProjectByname)(name);
+            _context3.next = 2;
+            return (0, _project_Db.get_AllTechnos)();
 
-          case 3:
-            projects = _context3.sent;
+          case 2:
+            technos = _context3.sent;
 
-            if (!projects) {
-              _context3.next = 8;
+            if (!technos) {
+              _context3.next = 7;
               break;
             }
 
             return _context3.abrupt("return", res.status(200).json({
-              projects: projects
+              technos: technos
             }));
 
-          case 8:
+          case 7:
             return _context3.abrupt("return", null);
 
-          case 9:
+          case 8:
           case "end":
             return _context3.stop();
         }
       }
     }, _callee3);
   }));
+  return _getTechnos.apply(this, arguments);
+}
+
+function getProjectByName(_x7, _x8) {
   return _getProjectByName.apply(this, arguments);
 }
 
-function create_Project(_x7, _x8) {
-  return _create_Project.apply(this, arguments);
-}
-
-function _create_Project() {
-  _create_Project = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(req, res) {
-    var img, _req$body, linkWebsite, linkCode, title, description, techno, projects;
-
+function _getProjectByName() {
+  _getProjectByName = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(req, res) {
+    var name, projects;
     return _regenerator.default.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
+            name = req.params.ProjectName;
+            _context4.next = 3;
+            return (0, _project_Db.get_ProjectByname)(name);
+
+          case 3:
+            projects = _context4.sent;
+
+            if (!projects) {
+              _context4.next = 8;
+              break;
+            }
+
+            return _context4.abrupt("return", res.status(200).json({
+              projects: projects
+            }));
+
+          case 8:
+            return _context4.abrupt("return", null);
+
+          case 9:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+  return _getProjectByName.apply(this, arguments);
+}
+
+function create_Project(_x9, _x10) {
+  return _create_Project.apply(this, arguments);
+}
+
+function _create_Project() {
+  _create_Project = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(req, res) {
+    var img, _req$body, linkWebsite, linkCode, title, description, techno, projects;
+
+    return _regenerator.default.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
             img = req.file;
             _req$body = req.body, linkWebsite = _req$body.linkWebsite, linkCode = _req$body.linkCode, title = _req$body.title, description = _req$body.description, techno = _req$body.techno;
             if (req.file) img = req.file.path;
-            _context4.next = 5;
+            _context5.next = 5;
             return (0, _project_Db.createProject)({
               img: img,
               linkWebsite: linkWebsite,
@@ -162,47 +202,47 @@ function _create_Project() {
             });
 
           case 5:
-            projects = _context4.sent;
+            projects = _context5.sent;
 
             if (!projects) {
-              _context4.next = 10;
+              _context5.next = 10;
               break;
             }
 
-            return _context4.abrupt("return", res.status(200).json({
+            return _context5.abrupt("return", res.status(200).json({
               projects: projects
             }));
 
           case 10:
-            return _context4.abrupt("return", null);
+            return _context5.abrupt("return", null);
 
           case 11:
           case "end":
-            return _context4.stop();
+            return _context5.stop();
         }
       }
-    }, _callee4);
+    }, _callee5);
   }));
   return _create_Project.apply(this, arguments);
 }
 
-function update_Project(_x9, _x10) {
+function update_Project(_x11, _x12) {
   return _update_Project.apply(this, arguments);
 }
 
 function _update_Project() {
-  _update_Project = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(req, res) {
+  _update_Project = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee6(req, res) {
     var img, id, _req$body2, linkWebsite, linkCode, title, description, techno, project;
 
-    return _regenerator.default.wrap(function _callee5$(_context5) {
+    return _regenerator.default.wrap(function _callee6$(_context6) {
       while (1) {
-        switch (_context5.prev = _context5.next) {
+        switch (_context6.prev = _context6.next) {
           case 0:
             img = req.file;
             id = req.params.id;
             _req$body2 = req.body, linkWebsite = _req$body2.linkWebsite, linkCode = _req$body2.linkCode, title = _req$body2.title, description = _req$body2.description, techno = _req$body2.techno;
             if (img) img = '/img/' + req.file.originalname;
-            _context5.next = 6;
+            _context6.next = 6;
             return (0, _project_Db.updatProject)({
               img: img,
               linkWebsite: linkWebsite,
@@ -214,26 +254,26 @@ function _update_Project() {
             });
 
           case 6:
-            project = _context5.sent;
+            project = _context6.sent;
 
             if (!project) {
-              _context5.next = 9;
+              _context6.next = 9;
               break;
             }
 
-            return _context5.abrupt("return", res.status(200).json({
+            return _context6.abrupt("return", res.status(200).json({
               message: 'Project has been update'
             }));
 
           case 9:
-            return _context5.abrupt("return", null);
+            return _context6.abrupt("return", null);
 
           case 10:
           case "end":
-            return _context5.stop();
+            return _context6.stop();
         }
       }
-    }, _callee5);
+    }, _callee6);
   }));
   return _update_Project.apply(this, arguments);
 }

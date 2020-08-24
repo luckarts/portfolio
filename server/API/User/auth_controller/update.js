@@ -1,6 +1,7 @@
 import { updatUser, get_User } from '../../../Services/User/User_DB';
 
 export async function update(req, res, next) {
+	console.log(req.file);
 	let cv = req.file;
 	const id = req.params.id;
 	const { description } = req.body;

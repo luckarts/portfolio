@@ -1,13 +1,28 @@
 import express from 'express';
 import { asyncHandler } from '../../helpers/asyncHandler';
 import { signup } from './auth_controller/signup';
+import path from 'path';
 import { update, getUser } from './auth_controller/update';
 import passport from 'passport';
 import authenticate from './authenticate';
 import { generateJWT } from '../../Services/User/User_Services';
-import { uploadPDF } from '../../helpers/multer/upload';
+import { fileFilter } from '../../helpers/multer/upload';
 import { jwtDecode } from '../../helpers/jwtDecode';
+
+import multer from 'multer';
 const router = express.Router();
+console.log(path.join(`${process.cwd()}/public`));
+const storage = multer.diskStorage({
+	destination: function(req, file, next) {
+		next(null, path.join(`${process.cwd()}/public/upload`));
+	},
+	filename: function(req, file, cb) {
+		cb(null, file.originalname);
+	},
+});
+const upload = multer({
+	storage: storage,
+}).single('cv');
 
 router.post('/signup', asyncHandler(signup));
 router.post(
@@ -29,8 +44,9 @@ router.post(
 	}
 );
 router.get('/user', asyncHandler(getUser));
-router.use(jwtDecode);
-router.put('/update', uploadPDF, asyncHandler(update));
+
+router.put('/update', upload, asyncHandler(update));
+
 router.get('/me', authenticate, (req, res) => {
 	try {
 		res.json(req.user);

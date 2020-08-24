@@ -5,21 +5,20 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.uploadPDF = exports.upload = void 0;
+exports.fileFilter = exports.upload = exports.storage = void 0;
 
 var _multer = _interopRequireDefault(require("multer"));
 
-var _path = _interopRequireDefault(require("path"));
-
-//upload images
 var storage = _multer.default.diskStorage({
   destination: function destination(req, file, next) {
-    next(null, _path.default.join("".concat(process.cwd(), "/public/img")));
+    next(null, path.join("".concat(process.cwd(), "/public/img")));
   },
   filename: function filename(req, file, cb) {
     cb(null, file.originalname);
   }
 });
+
+exports.storage = storage;
 
 var fileImgFilter = function fileImgFilter(req, file, cb) {
   if (file.mimetype == 'image/png' || file.mimetype == 'image/jpg' || file.mimetype == 'image/jpeg') {
@@ -36,18 +35,8 @@ var upload = (0, _multer.default)({
     file: 1024 * 1024 * 5
   },
   fileFilter: fileImgFilter
-}).single('img'); //upload files
-
+}).single('img');
 exports.upload = upload;
-
-var storagePdf = _multer.default.diskStorage({
-  destination: function destination(req, file, next) {
-    next(null, _path.default.join("".concat(process.cwd(), "/public/upload")));
-  },
-  filename: function filename(req, file, cb) {
-    cb(null, file.originalname);
-  }
-});
 
 var fileFilter = function fileFilter(req, file, cb) {
   if (file.mimetype == 'application/pdf') {
@@ -58,8 +47,4 @@ var fileFilter = function fileFilter(req, file, cb) {
   }
 };
 
-var uploadPDF = (0, _multer.default)({
-  storage: storagePdf,
-  fileFilter: fileFilter
-}).single('cv');
-exports.uploadPDF = uploadPDF;
+exports.fileFilter = fileFilter;

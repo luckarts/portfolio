@@ -65,17 +65,18 @@ function _create_Gallery() {
         switch (_context2.prev = _context2.next) {
           case 0:
             img = req.file;
+            console.log(req.file);
             if (req.file) img = req.file.filename;
-            _context2.next = 4;
+            _context2.next = 5;
             return (0, _gallery_Db.createGallery)({
               img: img
             });
 
-          case 4:
+          case 5:
             gallery = _context2.sent;
 
             if (!gallery) {
-              _context2.next = 9;
+              _context2.next = 10;
               break;
             }
 
@@ -83,10 +84,10 @@ function _create_Gallery() {
               gallery: gallery
             }));
 
-          case 9:
+          case 10:
             return _context2.abrupt("return", null);
 
-          case 10:
+          case 11:
           case "end":
             return _context2.stop();
         }

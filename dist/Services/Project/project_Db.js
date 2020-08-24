@@ -6,8 +6,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.get_AllProjects = get_AllProjects;
-exports.get_ProjectByname = get_ProjectByname;
+exports.get_AllTechnos = get_AllTechnos;
 exports.get_ProjectsByTag = get_ProjectsByTag;
+exports.get_ProjectByname = get_ProjectByname;
 exports.createProject = createProject;
 exports.updatProject = updatProject;
 
@@ -33,7 +34,7 @@ function _get_AllProjects() {
         switch (_context.prev = _context.next) {
           case 0:
             projects = _models.default.Project.findAll({
-              order: [['id', 'DESC']]
+              order: [['position', 'ASC']]
             });
 
             if (!projects) {
@@ -56,29 +57,27 @@ function _get_AllProjects() {
   return _get_AllProjects.apply(this, arguments);
 }
 
-function get_ProjectByname(_x) {
-  return _get_ProjectByname.apply(this, arguments);
+function get_AllTechnos() {
+  return _get_AllTechnos.apply(this, arguments);
 }
 
-function _get_ProjectByname() {
-  _get_ProjectByname = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(name) {
-    var projects;
+function _get_AllTechnos() {
+  _get_AllTechnos = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+    var technos;
     return _regenerator.default.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            projects = _models.default.Project.findOne({
-              where: {
-                title: name
-              }
+            technos = _models.default.Project.findAll({
+              attributes: ['techno']
             });
 
-            if (!projects) {
+            if (!technos) {
               _context2.next = 3;
               break;
             }
 
-            return _context2.abrupt("return", projects);
+            return _context2.abrupt("return", technos);
 
           case 3:
             return _context2.abrupt("return", null);
@@ -90,10 +89,10 @@ function _get_ProjectByname() {
       }
     }, _callee2);
   }));
-  return _get_ProjectByname.apply(this, arguments);
+  return _get_AllTechnos.apply(this, arguments);
 }
 
-function get_ProjectsByTag(_x2) {
+function get_ProjectsByTag(_x) {
   return _get_ProjectsByTag.apply(this, arguments);
 }
 
@@ -105,7 +104,6 @@ function _get_ProjectsByTag() {
         switch (_context3.prev = _context3.next) {
           case 0:
             projects = _models.default.Project.findAll({
-              order: [['id', 'DESC']],
               where: (0, _defineProperty2.default)({}, _sequelize.Op.or, [{
                 techno: (0, _defineProperty2.default)({}, _sequelize.Op.like, "%".concat(tag, "%"))
               }])
@@ -131,24 +129,21 @@ function _get_ProjectsByTag() {
   return _get_ProjectsByTag.apply(this, arguments);
 }
 
-function createProject(_x3) {
-  return _createProject.apply(this, arguments);
+function get_ProjectByname(_x2) {
+  return _get_ProjectByname.apply(this, arguments);
 }
 
-function _createProject() {
-  _createProject = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(arg) {
+function _get_ProjectByname() {
+  _get_ProjectByname = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(name) {
     var projects;
     return _regenerator.default.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            projects = _models.default.Project.create({
-              img: arg.img,
-              linkWebsite: arg.linkWebsite,
-              linkCode: arg.linkCode,
-              title: arg.title,
-              description: arg.description,
-              techno: arg.techno
+            projects = _models.default.Project.findOne({
+              where: {
+                title: name
+              }
             });
 
             if (!projects) {
@@ -168,32 +163,27 @@ function _createProject() {
       }
     }, _callee4);
   }));
+  return _get_ProjectByname.apply(this, arguments);
+}
+
+function createProject(_x3) {
   return _createProject.apply(this, arguments);
 }
 
-function updatProject(_x4) {
-  return _updatProject.apply(this, arguments);
-}
-
-function _updatProject() {
-  _updatProject = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(arg) {
+function _createProject() {
+  _createProject = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(arg) {
     var projects;
     return _regenerator.default.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
-            projects = _models.default.Project.update({
+            projects = _models.default.Project.create({
               img: arg.img,
               linkWebsite: arg.linkWebsite,
               linkCode: arg.linkCode,
               title: arg.title,
               description: arg.description,
               techno: arg.techno
-            }, {
-              returning: true,
-              where: {
-                id: arg.id
-              }
             });
 
             if (!projects) {
@@ -212,6 +202,52 @@ function _updatProject() {
         }
       }
     }, _callee5);
+  }));
+  return _createProject.apply(this, arguments);
+}
+
+function updatProject(_x4) {
+  return _updatProject.apply(this, arguments);
+}
+
+function _updatProject() {
+  _updatProject = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee6(arg) {
+    var projects;
+    return _regenerator.default.wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            projects = _models.default.Project.update({
+              img: arg.img,
+              linkWebsite: arg.linkWebsite,
+              linkCode: arg.linkCode,
+              title: arg.title,
+              description: arg.description,
+              techno: arg.techno,
+              position: arg.position
+            }, {
+              returning: true,
+              where: {
+                id: arg.id
+              }
+            });
+
+            if (!projects) {
+              _context6.next = 3;
+              break;
+            }
+
+            return _context6.abrupt("return", projects);
+
+          case 3:
+            return _context6.abrupt("return", null);
+
+          case 4:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6);
   }));
   return _updatProject.apply(this, arguments);
 }

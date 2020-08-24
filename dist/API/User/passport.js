@@ -25,6 +25,8 @@ passport.use(new LocalStrategy(function (username, password, done) {
     }
 
     _bcrypt.default.compare(password, user.password).then(function (match) {
+      console.log(password, user.password);
+
       if (match) {
         return done(null, user);
       }
