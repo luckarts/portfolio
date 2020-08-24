@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2016",
+    "jsx": "react",
+    "checkJs": true,
+    "experimentalDecorators": true,
+    "baseUrl": "./src",
+    "paths": {
+      "pages/*": ["components/pages/*"],
+      "shared/*": ["components/shared*"],
+      "store/*": ["store/*"],
+      "utils/*": ["utils/*"]
+    }
+  },
+  "include": ["src", "public/lib-web-components"],
+  "exclude": ["node_modules", "**/node_modules/*"]
+}
