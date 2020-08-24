@@ -32,7 +32,7 @@ export async function create_Project(req, res) {
 	} else return null;
 }
 export async function update_Project(req, res) {
-	console.log( req.file)
+
 	let img = req.file;
 	const id = req.params.id;
 	const { linkWebsite, linkCode, title, description, techno } = req.body;

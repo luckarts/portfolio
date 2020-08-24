@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.app = void 0;
+exports.default = void 0;
 
 var _express = _interopRequireDefault(require("express"));
 
@@ -36,7 +36,6 @@ require("./API/User/passport");
 _dotenv.default.config();
 
 var app = (0, _express.default)();
-exports.app = app;
 
 if (process.env.NODE_ENV === 'development') {
   // Log all requests to file, but errors to console
@@ -62,22 +61,20 @@ _models.default.connection.authenticate().then(function () {
   return console.log('database connected...');
 }).catch(function (err) {
   return console.log("Error:".concat(err));
-}); //app.use(express.static(path.join(__dirname + '/../public')));
-// Index Rout
+});
 
+app.use(_express.default.static(_path.default.join(__dirname + '/../public'))); // Index Rout
 
 app.use('/api/users', _routes.default);
 app.use('/api/gallery', _routes2.default);
 app.use('/api/experiences', _routes3.default);
 app.use('/api/projects', _routes4.default);
 app.use('/thumb/img/:img', _resize.default);
-var _process$env$PUBLIC_U = process.env.PUBLIC_URL,
-    PUBLIC_URL = _process$env$PUBLIC_U === void 0 ? '' : _process$env$PUBLIC_U; // Serve generated assets
-//app.use(express.static(path.join(__dirname + '/../public')));
-
-app.use(_express.default.static(_path.default.join(__dirname + '/../build')));
+app.get('/*/*', function (req, res) {
+  res.redirect('/notFound');
+});
 app.use('*', function (req, res) {
-  res.sendFile(_path.default.join(__dirname + '/../build/index.html'));
+  res.sendFile(_path.default.join(__dirname + '/../public/index.html'));
 }); // error handler
 
 app.use(function (req, res, next) {
@@ -92,3 +89,5 @@ app.use(function (err, req, res) {
     error: {}
   });
 });
+var _default = app;
+exports.default = _default;

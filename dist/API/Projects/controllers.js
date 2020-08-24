@@ -198,12 +198,11 @@ function _update_Project() {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
-            console.log(req.file);
             img = req.file;
             id = req.params.id;
             _req$body2 = req.body, linkWebsite = _req$body2.linkWebsite, linkCode = _req$body2.linkCode, title = _req$body2.title, description = _req$body2.description, techno = _req$body2.techno;
             if (img) img = '/img/' + req.file.originalname;
-            _context5.next = 7;
+            _context5.next = 6;
             return (0, _project_Db.updatProject)({
               img: img,
               linkWebsite: linkWebsite,
@@ -214,11 +213,11 @@ function _update_Project() {
               id: id
             });
 
-          case 7:
+          case 6:
             project = _context5.sent;
 
             if (!project) {
-              _context5.next = 10;
+              _context5.next = 9;
               break;
             }
 
@@ -226,10 +225,10 @@ function _update_Project() {
               message: 'Project has been update'
             }));
 
-          case 10:
+          case 9:
             return _context5.abrupt("return", null);
 
-          case 11:
+          case 10:
           case "end":
             return _context5.stop();
         }
