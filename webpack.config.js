@@ -1,57 +1,71 @@
-const dev = process.env.NODE_ENV !== 'production';
 const path = require('path');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-const plugins = [
-  new FriendlyErrorsWebpackPlugin(),
-  new MiniCssExtractPlugin({
-    filename: 'styles.css'
-  })
-];
-
-if (!dev) {
-  plugins.push(
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-      reportFilename: 'webpack-report.html',
-      openAnalyzer: false
-    })
-  );
-}
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const eslint = require('eslint');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: dev ? 'development' : 'production',
+  mode: 'production',
   context: path.join(__dirname, 'src'),
-  devtool: dev ? 'none' : 'source-map',
+  devtool: 'source-map',
   entry: {
-    app: './client.js'
+    app: 'index.jsx'
   },
   resolve: {
     modules: [path.resolve('./src'), 'node_modules']
   },
+  output: {
+    filename: `js/[name].js`,
+    path: path.resolve(__dirname, 'build'),
+    chunkFilename: `js/[name].js`
+  },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader'
+        enforce: 'pre',
+        test: /\.(js|jsx)$/,
+        loader: 'eslint-loader',
+        exclude: /(node_modules)/,
+        options: {
+          formatter: eslint.CLIEngine.getFormatter('stylish'),
+          emitWarning: process.env.NODE_ENV !== 'production'
+        }
       },
       {
-        test: /\.css$/,
+        test: /\.(js|jsx)$/,
+        loader: 'babel-loader',
+        exclude: /(node_modules)/
+      },
+      {
+        test: /\.(css|scss)$/,
         use: [
+          'style-loader',
           {
-            loader: MiniCssExtractPlugin.loader
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              localsConvention: 'camelCase'
+            }
           },
-          'css-loader'
+
+          'sass-loader'
         ]
       }
     ]
   },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js'
+  optimization: {
+    minimizer: [new OptimizeCSSAssetsPlugin()],
+    // Automatically split vendor and commons
+
+    runtimeChunk: true
   },
-  plugins
+  resolve: {
+    modules: ['src', 'node_modules'],
+    extensions: ['*', '.js', '.jsx', '.css', '.scss']
+  },
+  devtool: 'source-map',
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'template.html'
+    })
+  ]
 };
