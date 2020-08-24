@@ -49,13 +49,13 @@
     "start:prod": "node scripts/startProd.js",
     "build:style": "postcss src/styles/index.css -o src/styles/tailwind.css ",
     "start:dev": "npm run build:style && react-scripts start",
-    "build": "npm run build:style --production && react-scripts build && npm run build:server",
+    "build:front": "npm run build:style --production && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "coverage": "npm run test -- --coverage",
     "start": "node dist/start.js",
     "postcoverage": "opn coverage/lcov-report/index.html",
-    "build:server": "rm -rf dist && babel server -d dist",
+    "build": "rm -rf dist && babel server -d dist",
     "node:dev": "nodemon --exec babel-node ./server/start.js"
   },
   "eslintConfig": {
