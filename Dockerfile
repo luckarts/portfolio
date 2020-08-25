@@ -1,7 +1,9 @@
 # build ===============================
-RUN npm install webpack -g
+
 
 FROM node:10 as build
+
+RUN npm install webpack -g
 
 WORKDIR /ssr-portfolio
 
