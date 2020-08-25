@@ -8,8 +8,9 @@ COPY . .
 
 RUN npm ci
 
+RUN npm install webpack -g
+
 RUN npm run build:front
-RUN npm run webpack
 RUN npm run build
 # run ===============================
 FROM node:10-alpine as run
