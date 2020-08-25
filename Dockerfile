@@ -4,10 +4,11 @@ FROM node:10 as build
 WORKDIR /ssr-portfolio
 
 COPY package*.json ./
-
-RUN npm install
-
 COPY . .
+
+RUN npm ci
+
+
 
 RUN npm run build:front
 RUN npm run build
