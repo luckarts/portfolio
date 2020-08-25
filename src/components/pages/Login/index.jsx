@@ -8,13 +8,13 @@ const Login = ({ loginUserRequest }) => {
     username: '',
     password: ''
   });
-  const onSubmit = (values) => {
+  const onSubmit = values => {
     loginUserRequest(values);
   };
 
   return (
     <>
-      <LoginForm initialState={initialState} setState={setState} onSubmit={onSubmit} required />
+      <LoginForm initialState={initialState} setState={setState} onSubmit={onSubmit} />
     </>
   );
 };

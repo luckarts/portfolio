@@ -25,19 +25,18 @@ function _update() {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log(req.file);
             cv = req.file;
             id = req.params.id;
             description = req.body.description;
             if (cv) cv = req.file.originalname;
-            _context.next = 7;
+            _context.next = 6;
             return (0, _User_DB.updatUser)(description, cv);
 
-          case 7:
+          case 6:
             user = _context.sent;
 
             if (!user) {
-              _context.next = 10;
+              _context.next = 9;
               break;
             }
 
@@ -45,10 +44,10 @@ function _update() {
               message: 'User has been update'
             }));
 
-          case 10:
+          case 9:
             return _context.abrupt("return", null);
 
-          case 11:
+          case 10:
           case "end":
             return _context.stop();
         }
