@@ -3,7 +3,7 @@
 
 FROM node:10 as build
 
-RUN npm install webpack -g
+RUN npm install webpack webpack-cli -g
 
 WORKDIR /ssr-portfolio
 
