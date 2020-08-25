@@ -1,9 +1,24 @@
-FROM node:10.15.3-jessie
+# build ===============================
+FROM node:10 as build
+
+WORKDIR /ssr-portfolio
+
+COPY package*.json ./
+
+RUN npm install
 
 COPY . .
-COPY package*.json ./
-RUN npm ci
 
-CMD ["npm", "start"]
+RUN npm run build:front
+RUN npm run build
+# run ===============================
+FROM node:10-alpine as run
 
+WORKDIR /react-ssr-boilerplate
 
+COPY --from=dist /ssr-portfolio .
+COPY --from=build /ssr-portfolio .
+
+EXPOSE 80
+
+CMD ["npm", "run", "start:prod"]

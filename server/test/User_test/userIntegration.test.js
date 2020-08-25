@@ -60,7 +60,7 @@ describe("Testing Route User", () => {
             .expect("Content-Type", /json/)
             .expect(500)
             .end((err, res) => {
-                console.log(res.body.error.username[0]);
+               
                 expect(res.body.error.username[0]).toMatch(
                     "Veuillez saisir votre pseudo"
                 );

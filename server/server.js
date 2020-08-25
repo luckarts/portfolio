@@ -24,18 +24,18 @@ app.use(passport.initialize());
 import './API/User/passport';
 // Définition des CORS
 app.use((req, res, next) => {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Headers', 'Authorization, Content-Type');
-	res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-	next();
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Authorization, Content-Type');
+  res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+  next();
 });
 
 migration.connection
-	.authenticate()
-	.then(() => console.log('database connected...'))
-	.catch((err) => console.log(`Error:${err}`));
+  .authenticate()
+  .then(() => console.log('database connected...'))
+  .catch(err => console.log(`Error:${err}`));
 
-app.use(express.static(path.join(__dirname + '/../public')));
+app.use(express.static(path.join(__dirname + '/../build')));
 
 // Index Rout
 app.use('/api/users', user_routes);
@@ -45,26 +45,26 @@ app.use('/api/projects', projects_Routes);
 app.use('/routes', Routes);
 app.use('/thumb/img/:img', getResize);
 app.get('/*/*', function(req, res) {
-	res.redirect('/notFound');
+  res.redirect('/notFound');
 });
 app.use('*', (req, res) => {
-	res.sendFile(path.join(__dirname + '/../public/index.html'));
+  res.sendFile(path.join(__dirname + '/../build/index.html'));
 });
 
 // error handler
 app.use((req, res, next) => {
-	let err = new Error('Not Found');
+  let err = new Error('Not Found');
 
-	err.status = 404;
-	next(err);
+  err.status = 404;
+  next(err);
 });
 
 app.use((err, req, res) => {
-	res.status(err.status || 500);
-	res.render('error', {
-		message: err.message,
-		error: {},
-	});
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
 });
 
 export default app;

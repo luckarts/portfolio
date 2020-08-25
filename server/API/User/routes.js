@@ -1,7 +1,6 @@
 import express from 'express';
 import { asyncHandler } from '../../helpers/asyncHandler';
 import { signup } from './auth_controller/signup';
-import path from 'path';
 import { update, getUser } from './auth_controller/update';
 import passport from 'passport';
 import authenticate from './authenticate';

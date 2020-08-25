@@ -9,7 +9,7 @@ export async function get_Gallery(req, res) {
 
 export async function create_Gallery(req, res) {
 	let img = req.file;
-	console.log(req.file);
+
 	if (req.file) img = req.file.filename;
 
 	const gallery = await createGallery({ img });

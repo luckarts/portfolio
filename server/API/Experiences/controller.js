@@ -36,7 +36,6 @@ export async function create_Experiences_Details(req, res) {
 
 export async function create_List_Experiences(req, res) {
   const { newListExp, id } = req.body;
-  console.log(newListExp);
   for (let i = 0; i < newListExp.length; i++) {
     const description = newListExp[i].description;
     await createListExperiences(description, id);
@@ -51,7 +50,6 @@ export async function create_Experiences(req, res) {
   return res.status(200).json({ message: 'you are post in db Experience', newExperience });
 }
 export async function createAll_Experiences(req, res) {
-  console.log(req.body);
   const { date, fonction, company, link, list_experience, year } = req.body;
 
   if (date || fonction || company || link) {
@@ -100,7 +98,7 @@ export async function createAll_Experiences(req, res) {
 } */
 
 export async function update_Experience(req, res) {
-  console.log(req.body);
+
   const id = req.params.id;
   const { date, fonction, company, link, year, list_experience } = req.body;
 

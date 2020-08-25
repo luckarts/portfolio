@@ -9,7 +9,6 @@ const ListIllustration = ({ photoIndex, getIndexPhoto, ...props }) => {
   const [lightboxIsOpen, setIsOpen] = useState(false);
 
   const { loading, error, data } = fetchData(api.artworks.getArtworks);
-  console.log(data);
 
   const openLightbox = (index) => {
     getIndexPhoto(index);

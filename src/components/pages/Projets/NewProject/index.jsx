@@ -15,15 +15,14 @@ const NewProject = () => {
   const [bool, setIsSubmit] = useState(false);
   const createProject = usePost(api.project.createProject, bool, values);
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = values => {
     let formdata = new FormData();
     for (let key in values) {
       formdata.append(key, values[key]);
     }
     formdata.append('img', values.img[0]);
-    // setIsSubmit(true);
-    // setSubmitValues(formdata);
+    setIsSubmit(true);
+    setSubmitValues(formdata);
   };
   return (
     <ProjectForm

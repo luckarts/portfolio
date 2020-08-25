@@ -6,9 +6,8 @@ const usePost = (callback, bool, params) => {
   const [loading, setLoading] = useState(false);
   const [error, setErrors] = useState(null);
   useEffect(() => {
-    const postData = async function () {
+    const postData = async function() {
       try {
-        console.log(params);
         setLoading(true);
         const response = await callback(params);
 
