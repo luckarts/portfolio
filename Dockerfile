@@ -1,4 +1,6 @@
 # build ===============================
+RUN npm install webpack -g
+
 FROM node:10 as build
 
 WORKDIR /ssr-portfolio
@@ -7,7 +9,6 @@ COPY package*.json ./
 COPY . .
 
 RUN npm ci
-RUN npm install webpack -g
 
 RUN npm run webpack
 RUN npm run build
