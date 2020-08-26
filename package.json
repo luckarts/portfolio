@@ -56,14 +56,13 @@
     "validate.js": "^0.13.1"
   },
   "scripts": {
-    "start:prod": "node scripts/startProd.js",
     "build:style": "postcss src/styles/index.css -o src/styles/tailwind.css ",
     "start:dev": "npm run build:style && react-scripts start",
     "build:front": "npm run build:style --production && webpack",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "coverage": "npm run test -- --coverage",
-    "starts": "node dist/start.js",
+    "start": "node dist/start.js",
     "postcoverage": "opn coverage/lcov-report/index.html",
     "build": "rm -rf dist && babel server -d dist",
     "node:dev": "nodemon --exec babel-node ./server/start.js"
