@@ -4,7 +4,7 @@ import path from 'path';
 //upload images
 const storage = multer.diskStorage({
   destination: function(req, file, next) {
-    next(null, path.join(`${process.cwd()}/public/img`));
+    next(null, path.join(`${process.cwd()}/build/img`));
   },
   filename: function(req, file, cb) {
     cb(null, file.originalname);
@@ -29,7 +29,7 @@ export const upload = multer({
 
 const storagePdf = multer.diskStorage({
   destination: function(req, file, next) {
-    next(null, path.join(`${process.cwd()}/public/upload`));
+    next(null, path.join(`${process.cwd()}/build/upload`));
   },
   filename: function(req, file, cb) {
     cb(null, file.originalname);
