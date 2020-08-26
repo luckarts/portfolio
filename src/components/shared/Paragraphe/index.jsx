@@ -10,7 +10,6 @@ const propTypes = {
 };
 
 const Paragraphe = ({ className, title, text }, props) => {
-  console.log(props, text);
   return (
     <div className={className}>
       <Typography variante="h3" className=" pt-2">

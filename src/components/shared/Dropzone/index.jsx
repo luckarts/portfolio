@@ -13,7 +13,7 @@ const propTypes = {
 const Dropzone = React.forwardRef(({ newImage, type, name, handleOnDrop, errors, pdf }, ref) => {
   return (
     <div className="dropZone">
-      {newImage ? <ImagePreview imagefile={newImage} pdf={pdf} /> : <Placeholder />}
+      {newImage ? <ImagePreview imagefile={newImage.name} pdf={pdf} /> : <Placeholder />}
       <input type={type} name={name} ref={ref} onChange={handleOnDrop} />
       {errors && errors.type === 'required' && <span>This is required</span>}
     </div>

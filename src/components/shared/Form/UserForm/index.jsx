@@ -11,7 +11,7 @@ const Form = ({ title, initialState, loading, onSubmit, setState, serverErrors, 
     setErrors({ errors: serverErrors });
   }, [serverErrors]);
 
-  const handleOnDrop = (e) => {
+  const handleOnDrop = e => {
     let file = e.target.files[0];
     let value = Object.assign(file, { preview: URL.createObjectURL(file) });
     setFile({ file: value });
@@ -90,7 +90,7 @@ const Form = ({ title, initialState, loading, onSubmit, setState, serverErrors, 
             <Dropzone
               type="file"
               name="cv"
-              register={register}
+              ref={register()}
               errors={errors.cv}
               handleOnDrop={handleOnDrop}
               newImage={file ? file.file : initialState.cv}
@@ -116,7 +116,7 @@ const Form = ({ title, initialState, loading, onSubmit, setState, serverErrors, 
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   serverErrors: state.formErrors.errors
 });
 export default connect(mapStateToProps)(Form);

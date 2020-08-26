@@ -14,7 +14,7 @@ const Form = ({ title, loading, onSubmit, initialState, serverErrors }) => {
   const handleOnDrop = (e) => {
     let file = e.target.files[0];
     let value = Object.assign(file, { preview: URL.createObjectURL(file) });
-    console.log(value);
+    
     setImg({ img: value });
   };
 

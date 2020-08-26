@@ -11,7 +11,7 @@ const MyProfile = () => {
 
   const updateUser = usePost(api.user.update, bool, values);
 
-  const onSubmit = (values) => {
+  const onSubmit = values => {
     let formdata = new FormData();
 
     formdata.append('cv', values.cv[0]);
