@@ -1,25 +1,21 @@
 
-FROM  ubuntu:16.04 AS build_image
+
+FROM node:12-alpine AS build_image
+
+# couchbase sdk requirements
+RUN apk update && apk add yarn curl bash python g++ make && rm -rf /var/cache/apk/*
 
 WORKDIR /usr/src/app
-RUN apt-get update
-RUN apt-get -y install curl gnupg
-RUN curl -sL https://deb.nodesource.com/setup_11.x  | bash -
-RUN apt-get -y install nodejs
 
-RUN curl -sfL https://install.goreleaser.com/github.com/tj/node-prune.sh | bash -s -- -b /usr/local/bin
 COPY package*.json ./
 RUN npm ci
-
+RUN npm install sharp
 COPY . .
 
 RUN npm run build
 
 # remove development dependencies
 RUN npm prune --production
-
-RUN /usr/local/bin/node-prune
-
 
 # build application
 

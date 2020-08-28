@@ -3,6 +3,8 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const eslint = require('eslint');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+CopyWebpackPlugin = require('copy-webpack-plugin');
+
 module.exports = {
   mode: 'production',
   context: path.join(__dirname, 'src'),
@@ -72,6 +74,17 @@ module.exports = {
       // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,
       skipWaiting: true
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: '../public/images', to: 'images' },
+        { from: '../public/img', to: 'img' },
+        { from: '../public/asset-manifest.json', to: 'asset-manifest.json' },
+        { from: '../public/upload', to: 'upload' },
+        { from: '../public/sitemap.xml', to: 'sitemap.xml' },
+        { from: '../public/robots.txt', to: 'robots.txt' },
+        { from: '../public/manifest.json', to: 'manifest.json' }
+      ]
     })
   ]
 };
