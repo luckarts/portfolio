@@ -64,7 +64,7 @@
     "coverage": "npm run test -- --coverage",
     "start": "node dist/start.js",
     "postcoverage": "opn coverage/lcov-report/index.html",
-    "build": "rm -rf dist && babel server -d dist",
+    "build": "npm run build:front && rm -rf dist && babel server -d dist",
     "node:dev": "nodemon --exec babel-node ./server/start.js"
   },
   "eslintConfig": {
@@ -112,6 +112,7 @@
     "tailwindcss-animations": "^2.0.0",
     "tailwindcss-gradients": "^3.0.0",
     "tailwindcss-pseudo-elements": "^1.1.2",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "workbox-webpack-plugin": "^5.1.3"
   }
 }
