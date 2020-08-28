@@ -6,7 +6,8 @@ React Router
 Redux & SAGA
 React Helmet
 Jest and react-testing-library
-Tailwind Css
+Tailwind Css with purge css unused
+Webpack custom build the app
 Docker-ized for production with multi-stage and compress Image sizes
 
 # Features
