@@ -12,7 +12,7 @@ connection = new Sequelize(process.env.MYSQL_DATABASE, process.env.MYSQL_USER, p
   }
 });
 if (process.env.NODE_ENV === 'test') {
-  connection = new Sequelize('test', 'root', 'root', {
+  connection = new Sequelize('test', 'test', 'test', {
     host: 'localhost',
     dialect: 'mysql',
     define: {
