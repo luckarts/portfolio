@@ -7,6 +7,7 @@ module.exports = {
   moduleFileExtensions: ['js', 'jsx', 'json', 'node'],
   testPathIgnorePatterns: ['/node_modules/', '/public/'],
   testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/config/jest/setupTestsAfterEnv.js'],
   setupFilesAfterEnv: [
     'testing-library/jest-dom/extend-expect',
     '@testing-library/user-event',
