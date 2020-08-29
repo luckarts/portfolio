@@ -1,28 +1,28 @@
-require("dotenv").config();
+require('dotenv').config();
 
 module.exports = {
-    "development": {
-        "username": process.env.MYSQL_USER,
-        "password": process.env.MYSQL_PASSWORD,
-        "database": process.env.MYSQL_DATABASE,
-        "host": process.env.DATABASE_HOST,
-        "dialect": "mysql",
-        "logging": true
-    },
-    "test": {
-        "username": process.env.MYSQL_USER,
-        "password": process.env.MYSQL_PASSWORD,
-        "database": process.env.MYSQL_DATABASE,
-        "host": process.env.DATABASE_HOST,
-        "dialect": "mysql",
-        "logging": true
-    },
-    "production": {
-        "username": process.env.MYSQL_USER,
-        "password": process.env.MYSQL_PASSWORD,
-        "database": process.env.MYSQL_DATABASE,
-        "host": process.env.DATABASE_HOST,
-        "dialect": "mysql",
-        "logging": true
-    }
+  development: {
+    username: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
+    host: process.env.DATABASE_HOST,
+    dialect: 'mysql',
+    logging: true
+  },
+  test: {
+    username: 'root',
+    password: 'test',
+    database: 'test',
+    host: 'localhost',
+    dialect: 'mysql',
+    logging: true
+  },
+  production: {
+    username: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
+    host: process.env.DATABASE_HOST,
+    dialect: 'mysql',
+    logging: true
+  }
 };
