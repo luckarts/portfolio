@@ -21,6 +21,8 @@ const useFetch = (callback, params) => {
         } else {
           setErrors(error);
         }
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
