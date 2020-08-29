@@ -1,0 +1,18 @@
+.spinner {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.spinner::after {
+  content: '';
+
+  display: block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid white;
+  border-radius: 9999px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  animation: spinAround 500ms infinite linear;
+}
