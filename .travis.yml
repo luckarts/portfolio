@@ -1,24 +1,25 @@
 sudo: false
 language: node_js
+env:
+  secure: fWGNo7dPlmWIXJg6wPOhOrLU98R8au2ll6A6e2ubHpk5t2mr69nIlWpgks3dBe0duDxLYVdIOUYI+3HERHhORl4kKMBiccJU7pYqS7oTbwMUKbmejQ0Wu3zh5euC2EZd0vYxJy8E9oNQNRsBRCzCLqo962xQ3fhEqd6QDzR9X1IROnpMwQDhk6y7J0oii1l3ayLN+IzHwDj85sd9DRR3ZJchuCffmAIty/OVzhHennRgszvZBKQIjH8QVjcqHWaIrOWgn15ZbC76C4vtT+mBHlOGqx/mz9z01XHh0uhgvoQTW7zczL5Er7ZOW9SSkwEo1O3GpxxKuAoHmWaBvWPrVXz1uQdOpk33mXsAiZPDwUvLRZRjq8J00GKVn12LJuHyr+xB6RztCPqfs4TKUeUFn7bl3F85F9FF9yEezbzG418F7qqrfl8U49rT7OXg3lDhTJ58Mtoy4lJeCbYKtkfbFwgjtBN/ASrv2Ioc2Cc6nRMB+oTgDb+CoXiUz3/9yc2prUPjXcBz8YFRpNeBDZ1V5K2IctFNfvyZtysyZ9gauyTvmcrIfW/0Bur/DdspeQjFrA86Drk8Hx2jywfoqQmg0fWcmPZUrCx0sFcLO+VyffyG7Z2fSiZWkPjgmNQ4O7eVxpJG0bswtK2TvRRP0GH6STdQnrYzbAo1tQsEdVRRiHc=
 services:
-  - mysql
+- mysql
 node_js:
-  - '13.14.0'
+- 13.14.0
 branches:
   only:
-    - master
+  - master
 cache:
   directories:
-    - node_modules
+  - node_modules
 before_install:
-  - mysql -e 'CREATE DATABASE test;'
+- mysql -e 'CREATE DATABASE test;'
 install:
-  - npm ci
-  - npm install sharp
+- npm ci
+- npm install sharp
 before_script:
-  - npm install -g sequelize-cli
-  - sequelize db:migrate
+- npm install -g sequelize-cli
+- sequelize db:migrate
 script:
-  - npm run test
-    npm run jest
+- npm run test npm run jest
 notification: email:false
