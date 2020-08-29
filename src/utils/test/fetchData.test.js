@@ -23,7 +23,7 @@ it('initial and success state', async () => {
   expect(result.current).toMatchObject({
     data: useApiMock.data,
     error: null,
-    loading: false
+    loading: true
   });
 });
 
@@ -41,6 +41,6 @@ it('get error', async () => {
   expect(result.current).toMatchObject({
     data: [],
     error: new Error(errorMessage),
-    loading: false
+    loading: true
   });
 });

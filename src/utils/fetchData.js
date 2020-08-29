@@ -5,7 +5,7 @@ const useFetch = (callback, params) => {
   const [loading, setLoading] = useState(true);
   const [error, setErrors] = useState(null);
   useEffect(() => {
-    const fetchData = async function () {
+    const fetchData = async function() {
       try {
         setLoading(true);
         const response = await callback(params);
@@ -21,8 +21,6 @@ const useFetch = (callback, params) => {
         } else {
           setErrors(error);
         }
-      } finally {
-        setLoading(false);
       }
     };
     fetchData();
