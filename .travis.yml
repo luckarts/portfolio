@@ -20,5 +20,6 @@ before_script:
   - npm install -g sequelize-cli
   - sequelize db:migrate
 script:
-  - npm run test npm run jest
+  - npm run test
+  - npm run jest
 notification: email:false
