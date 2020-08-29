@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from 'utils/testReduxWrapper';
+import { render, screen, fireEvent } from '../utils/testReduxWrapper';
 import AllPage from './initPage';
 
 const component = (

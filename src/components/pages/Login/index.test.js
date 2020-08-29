@@ -18,8 +18,8 @@ const mockLogin = jest.fn();
   return Promise.resolve({ email, password });
 }); */
 const fakePost = {
-  username: 'username',
-  password: 'password'
+  username: 'email@mail.fr',
+  password: 'Password45%'
 };
 
 describe('App', () => {

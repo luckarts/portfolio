@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from 'utils/testReduxWrapper';
+import { render, screen, fireEvent } from '../../../utils/testReduxWrapper';
 import { waitFor } from '@testing-library/react';
 import { ResumePage } from 'components/pages';
 import { Route } from 'react-router-dom';

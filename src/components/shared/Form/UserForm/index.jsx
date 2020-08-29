@@ -46,7 +46,13 @@ const Form = ({ title, initialState, loading, onSubmit, setState, serverErrors, 
               errors={errors.username}
               autoFocus
               error={errorServer.errors && errorServer.errors.username}
-              ref={register({ ...required })}
+              ref={register({
+                ...required,
+                pattern: {
+                  value: /\S+@\S+\.\S+/i,
+                  message: 'Entered value does not match format'
+                }
+              })}
             />
           )}
           {initialState.email !== undefined && (
@@ -58,7 +64,13 @@ const Form = ({ title, initialState, loading, onSubmit, setState, serverErrors, 
               defaultValue={initialState.email}
               errors={errors.email}
               error={errorServer.errors && errorServer.errors.email}
-              ref={register({ ...required })}
+              ref={register({
+                ...required,
+                pattern: {
+                  value: /\S+@\S+\.\S+/i,
+                  message: 'Entered value does not match format'
+                }
+              })}
             />
           )}
 
@@ -71,7 +83,13 @@ const Form = ({ title, initialState, loading, onSubmit, setState, serverErrors, 
               defaultValue={initialState.password}
               error={errorServer.errors && errorServer.errors.password}
               errors={errors.password}
-              ref={register({ ...required })}
+              ref={register({
+                ...required,
+                pattern: {
+                  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i,
+                  message: 'Entered value does not match format'
+                }
+              })}
             />
           )}
           {initialState.description !== undefined && (

@@ -21,6 +21,7 @@
     "express": "^4.15.4",
     "gm": "^1.23.1",
     "html-react-parser": "^0.13.0",
+    "jest": "^26.4.2",
     "jsonwebtoken": "^8.5.1",
     "jwt-simple": "^0.5.6",
     "morgan": "^1.10.0",
@@ -61,11 +62,12 @@
     "start:dev": "npm run build:style && react-scripts start",
     "build:front": "npm run build:style --production && webpack",
     "test": "react-scripts test --env=jsdom",
+    "jest": "jest --config ./jest.config.json --watch",
     "eject": "react-scripts eject",
     "coverage": "npm run test -- --coverage",
     "start": "node dist/start.js",
-    "postcoverage": "opn coverage/lcov-report/index.html",
-    "build": "npm run build:front && rm -rf dist && babel server -d dist",
+    "build:test": "babel server -d dist  ",
+    "build": "npm run build:front && rm -rf dist && babel server -d dist --copy-files --ignore **/*.test.js",
     "node:dev": "nodemon --exec babel-node ./server/start.js"
   },
   "eslintConfig": {

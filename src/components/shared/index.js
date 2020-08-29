@@ -10,6 +10,5 @@ export { default as LazyImage } from './LazyImage';
 export { default as Lightbox } from './Lightbox';
 export { default as Loader } from './Loader';
 export { default as Masonry } from './Masonry';
-export { default as Paragraphe } from './Paragraphe';
 export { default as Placeholder } from './Placeholder';
 export { default as Swipeable } from './Swipeable';

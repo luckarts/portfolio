@@ -8,6 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+
       email: {
         type: Sequelize.STRING
       },
@@ -16,7 +17,7 @@ module.exports = {
       },
       imgProfile: {
         type: Sequelize.STRING
-      },
+      }
     });
   },
   down: (queryInterface, Sequelize) => {

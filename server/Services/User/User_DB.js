@@ -1,4 +1,4 @@
-import db from "../../Database/models";
+import db from '../../Database/models';
 import Sequelize from 'sequelize';
 
 const Op = Sequelize.Op;
@@ -8,19 +8,19 @@ Function checks if username already exists in database.
 Returns user if username already taken.
  */
 export async function UsernameExist(username) {
-    if (username === undefined || username === null) {
-        throw new Error("no username was passed on db ");
-    }
+  if (username === undefined || username === null) {
+    throw new Error('no username was passed on db ');
+  }
 
-    const user = await db.User.findOne({
-        "where": { username }
-    });
+  const user = await db.User.findOne({
+    where: { username }
+  });
 
-    if (user) {
-        return user;
-    }
+  if (user) {
+    return user;
+  }
 
-    return null;
+  return null;
 }
 
 /*
@@ -29,35 +29,21 @@ Returns user if email already taken.
  */
 
 export async function EmailExist(email) {
-    if (email === undefined || email === null) {
-        throw new Error("no email was passed on db ");
-    }
+  if (email === undefined || email === null) {
+    throw new Error('no email was passed on db ');
+  }
 
-    const user = await db.User.findOne({
-        "where": { "email": email }
-    });
+  const user = await db.User.findOne({
+    where: { email: email }
+  });
 
-    if (user) {
-        return user;
-    }
+  if (user) {
+    return user;
+  }
 
-    return null;
+  return null;
 }
 // Select * from email where i = 1 Limit 1
-
-
-
-// Select * from Permission where i = 1 Limit 1
-
-export async function ValidePermissionId(PermissionId) {
-    const permission = db.Permission.findOne({ "where": { "id": PermissionId } });
-
-    if (permission) {
-        return permission;
-    }
-
-    return null;
-}
 
 /*
 Function checks create User in database.
@@ -65,77 +51,69 @@ Returns user .
  */
 
 export async function CreateUser(args) {
-    if (!args.username) {
-        throw new Error("invalid argument username");
-    }
-    if (!args.email) {
-        throw new Error("invalid argument email");
-    }
-    if (!args.password) {
-        throw new Error("invalid argument password");
-    }
-    if (!args.PermissionId) {
-        args.PermissionId = 2;
-    }
-    const permission = await ValidePermissionId(args.PermissionId);
+  if (!args.username) {
+    throw new Error('invalid argument username');
+  }
+  if (!args.email) {
+    throw new Error('invalid argument email');
+  }
+  if (!args.password) {
+    throw new Error('invalid argument password');
+  }
 
-    if (!permission) {
-        throw new Error("permission not find");
-    }
-    const user = await db.User.create({
-        "username": args.username,
-        "password": args.password,
-        "email": args.email,
-        "PermissionId": args.PermissionId
-    });
+  const user = await db.User.create({
+    username: args.username,
+    password: args.password,
+    email: args.email
+  });
 
-    return user;
+  return user;
 }
 export async function findUserIdOrFirstname(params) {
-    if (!params) throw new Error('invalid argument: id');
+  if (!params) throw new Error('invalid argument: id');
 
-    const user = await db.User.findOne({
-        where:
-            { email: params },
+  const user = await db.User.findOne({
+    where: { email: params }
+  });
 
-    });
+  if (user) return user.dataValues;
 
-    if (user) return user.dataValues;
-
-    return null;
+  return null;
 }
 /*
 Function delete User with username as params
  */
 export async function DeleteUserID(username) {
-    if (!username) {
-        throw new Error("invalid argument: id");
+  if (!username) {
+    throw new Error('invalid argument: id');
+  }
+  const user = await db.User.destroy({
+    where: {
+      username
     }
-    const user = await db.User.destroy({
-        "where": {
-            username
-        }
-    });
+  });
 
-    return null;
+  return null;
 }
 export async function updatUser(description, cv) {
-    const user = db.User.update({
-        description: description,
-        cv: cv,
-
-    }, { "returning": true, "where": { "id": 1 } });
-    if (user) {
-        return user;
-    }
-    return null;
+  const user = db.User.update(
+    {
+      description: description,
+      cv: cv
+    },
+    { returning: true, where: { id: 1 } }
+  );
+  if (user) {
+    return user;
+  }
+  return null;
 }
 export async function get_User() {
-    const user = db.User.findOne({
-        attributes: ["description", "cv"],
-    })
-    if (user) {
-        return user;
-    }
-    return null;
+  const user = db.User.findOne({
+    attributes: ['description', 'cv']
+  });
+  if (user) {
+    return user;
+  }
+  return null;
 }

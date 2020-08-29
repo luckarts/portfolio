@@ -69,25 +69,27 @@ const ProjectPage = ({ edit, isAuthenticated }, ...props) => {
             </Button>
           ))}
       </div>
-      {loading ? (
-        <div className={`my-40 text-center`}>
-          <Loader bg="bg-primary " />
-        </div>
-      ) : error ? (
-        <span data-testid="error" className="text-red-800 text-center w-full">
-          {error}
-        </span>
-      ) : (
-        <div className="max-w-screen-xl flex flex-wrap  mb-4 mx-auto md:p-12 sm:p-6 CardsDelay">
-          {data &&
-            data.projects &&
-            data.projects.map((projet, index) => (
-              <div className="md:w-1/2 sm:w-full " key={index}>
-                <CardProject keyID={index} {...projet} edit={edit} {...props} />
-              </div>
-            ))}
-        </div>
-      )}
+      <div style={{ minHeight: '500px' }}>
+        {loading ? (
+          <div className={`my-40 text-center`}>
+            <Loader bg="bg-primary " />
+          </div>
+        ) : error ? (
+          <span data-testid="error" className="text-red-800 text-center w-full">
+            {error}
+          </span>
+        ) : (
+          <div className="max-w-screen-xl flex flex-wrap  mb-4 mx-auto md:p-12 sm:p-6 CardsDelay">
+            {data &&
+              data.projects &&
+              data.projects.map((projet, index) => (
+                <div className="md:w-1/2 sm:w-full " key={index}>
+                  <CardProject keyID={index} {...projet} edit={edit} {...props} />
+                </div>
+              ))}
+          </div>
+        )}
+      </div>
     </>
   );
 };

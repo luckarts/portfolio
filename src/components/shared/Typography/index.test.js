@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { Typography } from 'components/shared';
+import { render, screen } from '@testing-library/react';
+import Typography from '../Typography';
 const href = 'http://mxstbr.com/';
 
 describe('<h1 />', () => {
