@@ -12,10 +12,8 @@ const useFetch = (callback, params) => {
 
         if (response) {
           setData(response);
-          setLoading(false);
         }
       } catch (error) {
-        setLoading(false);
         if (error.response && error.response.data.message) {
           setErrors(error.response.data.message);
         } else if (error.response && error.response.status) {
@@ -23,6 +21,8 @@ const useFetch = (callback, params) => {
         } else {
           setErrors(error);
         }
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();

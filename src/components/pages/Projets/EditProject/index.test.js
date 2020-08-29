@@ -20,7 +20,9 @@ const mockLogin = jest.fn();
 
 const fakePost = {
   title: 'changePost',
-  description: 'changePost'
+  description: 'changePost',
+  techno: 'techno',
+  linkCode: 'https://'
 };
 
 describe('App', () => {
@@ -31,8 +33,7 @@ describe('App', () => {
     screen.getByLabelText(/title/i).value = fakePost.title;
     screen.getByLabelText(/description/i).value = fakePost.description;
     fireEvent.submit(screen.getByRole('button'));
-    // await waitFor(() => expect(mockLogin).toHaveBeenCalledTimes(1));
-    // expect(mockLogin).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(mockLogin).toHaveBeenCalledTimes(1));
   });
   it('should display error when title is empty', async () => {
     screen.getByLabelText(/title/i).value = '';
