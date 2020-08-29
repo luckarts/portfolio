@@ -4,20 +4,21 @@ import '@testing-library/jest-dom/extend-expect';
 import Routes from 'routes';
 import { Route } from 'react-router-dom';
 const callback = jest.fn();
-import { render, screen, fireEvent } from 'utils/testReduxWrapper';
+import { render, screen, fireEvent, cleanup } from 'utils/testReduxWrapper';
 import { initialState } from 'store/initialState';
 const LocationDisplay = ({ location }) => <div>{location.pathname}</div>;
 import 'mutationobserver-shim';
 afterEach(() => {
   jest.clearAllMocks();
 });
-
+afterEach(cleanup);
 describe('Routes', () => {
   it('navigation', async () => {
     const route = '/';
     render(<Routes />, initialState, { route });
     fireEvent.click(screen.getByText('Développeur Fullstack Js'));
     await waitFor(() => screen.getByText('Mes projets'));
+    await waitFor(() => screen.getByText('Not Found'));
     //   fireEvent.click(screen.getByText('À propos'));
     //  await waitFor(() => screen.getByText('À propos', { selector: 'h1' }));
   });
