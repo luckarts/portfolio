@@ -10,10 +10,10 @@ module.exports = {
     logging: true
   },
   test: {
-    username: 'root',
-    password: 'test',
-    database: 'test',
-    host: 'localhost',
+    username: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
+    host: process.env.DATABASE_HOST,
     dialect: 'mysql',
     logging: true
   },
