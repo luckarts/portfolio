@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Card Component renders correctly 1`] = `ShallowWrapper {}`;
-
-exports[`Checking PropTypes renders correctly 1`] = `[Function]`;
-
-exports[`Should render. 1`] = `ReactWrapper {}`;
-
-exports[`renders correctly 1`] = `[Function]`;

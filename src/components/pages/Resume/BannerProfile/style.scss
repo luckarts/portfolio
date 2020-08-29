@@ -1,0 +1,5 @@
+@for $i from 0 through 2 {
+  .banner-profile div:nth-child(#{$i}n) {
+    animation-delay: #{$i * 0.5}s;
+  }
+}
