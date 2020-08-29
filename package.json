@@ -62,7 +62,7 @@
     "start:dev": "npm run build:style && react-scripts start",
     "build:front": "npm run build:style --production && webpack",
     "test": "react-scripts test ",
-    "jest": "jest --config ./jest.config.json --watch",
+    "jest": "jest --config ./jest.config.json ",
     "eject": "react-scripts eject",
     "coverage": "npm run test -- --coverage",
     "start": "node dist/start.js",
