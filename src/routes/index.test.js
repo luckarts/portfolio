@@ -15,12 +15,12 @@ afterEach(() => {
 describe('Routes', () => {
   it('landing on a Home page navigate to project after 5s', async () => {
     const route = '/';
-    render(<Routes />, { route });
+    render(<Routes />, initialState, { route });
     await waitFor(() => screen.getByText(/Mes projets/i), { timeout: 5000 });
   });
   it('navigation', async () => {
     const route = '/';
-    render(<Routes />, { route });
+    render(<Routes />, initialState, { route });
     fireEvent.click(screen.getByText('Développeur Fullstack Js'));
     await waitFor(() => screen.getByText(/Mes projets/i));
     fireEvent.click(screen.getByText('À propos'));
