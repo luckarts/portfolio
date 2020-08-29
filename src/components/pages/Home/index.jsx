@@ -39,7 +39,7 @@ const BannerHeader = ({ activeTab }) => {
           <div id="stars3"></div>
           <div className="flex items-center justify-center flex-col m-auto ">
             <img className="FadeSize sm:px-4" src="img/LOGO7.png" alt="logo" />
-            <h1 className="text-white font-bold my-5 text-2xl FadeSize animationD-1s">Développeur Fullstack Js</h1>
+            <h1 className="text-white font-bold my-5 text-2xl FadeSize animationD-1s">Développeur Front end JS</h1>
             {width >= 1024 ? (
               <Loader bg={'bg-white'} />
             ) : (

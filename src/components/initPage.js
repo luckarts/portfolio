@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from './Footer';
+
 import Navbar from './Navbar';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,13 +10,12 @@ const InitPage = ({ children, current_tabs }) => {
     <div className="h-full xsl:pt-32 xs:pt-12 sm:mb-4 sm:bg-gradient-t-default relative">
       <Navbar />
       {children}
-      <Footer />
     </div>
   ) : (
     <>{children}</>
   );
 };
-export const mapStateToProps = (state) => ({
+export const mapStateToProps = state => ({
   current_tabs: state.tabs.current_tabs
 });
 InitPage.propTypes = {

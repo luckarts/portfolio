@@ -183,7 +183,7 @@ module.exports = {
     require('tailwindcss-animations'),
 
     require('tailwindcss-pseudo-elements'),
-    function ({ addUtilities }) {
+    function({ addUtilities }) {
       addUtilities(
         {
           '.empty-content': {
@@ -210,6 +210,12 @@ module.exports = {
           },
           '.animationD-100s': {
             'animation-delay': '1s'
+          },
+          '.animationD-120s': {
+            'animation-delay': '1.20s'
+          },
+          '.animationD-140s': {
+            'animation-delay': '1.40s'
           },
           '.animationD-1s': {
             'animation-delay': '1s'

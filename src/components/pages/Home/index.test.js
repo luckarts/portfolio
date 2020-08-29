@@ -8,6 +8,6 @@ import { initialState } from 'store/initialState';
 it('should render a <Projets> component with loading component ', async () => {
   const route = '/';
   const { getByText, getByTestId } = render(<Route exact path="/" component={Home} />, initialState, { route });
-  expect(getByText('Développeur Fullstack Js'));
+  expect(getByText('Développeur Front end JS'));
   expect(getByTestId('loading'));
 });
